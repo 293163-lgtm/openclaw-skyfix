@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# generated noise
+*.log
+
+# keep release artifacts intentional
+# dist/ is committed here on purpose because it contains the shipped .skill package

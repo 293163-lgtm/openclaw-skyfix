@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>skyfix 使用说明书</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.1);
+      --line: rgba(255,255,255,0.12);
+      --text: #f5f3ee;
+      --muted: #b9b4aa;
+      --gold: #d8b36a;
+      --green: #5ad2a0;
+      --red: #ff8f86;
+      --shadow: 0 30px 80px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(216,179,106,0.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(90,210,160,0.08), transparent 28%),
+        linear-gradient(180deg, #0b0f15 0%, #0d1117 35%, #11161d 100%);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+      line-height: 1.75;
+    }
+
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 4px 4px, 4px 4px;
+      mix-blend-mode: soft-light;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 80px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 32px 36px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(216,179,106,0.28);
+      color: var(--gold);
+      background: rgba(216,179,106,0.08);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      margin-top: 26px;
+      align-items: end;
+    }
+
+    h1, h2, h3 { margin: 0; font-weight: 700; }
+    h1 {
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 9ch;
+    }
+
+    .lead {
+      margin-top: 18px;
+      max-width: 44rem;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-card {
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--gold);
+    }
+
+    .hero-card code,
+    .chip,
+    kbd {
+      font-family: "SF Mono", "JetBrains Mono", monospace;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(216,179,106,0.22), rgba(216,179,106,0.1));
+      border-color: rgba(216,179,106,0.26);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(18px);
+    }
+
+    .sidebar h3 {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      display: block;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover { border-color: var(--line); }
+
+    .content {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section {
+      padding: 26px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+    }
+
+    .section > p:first-of-type { margin-top: 10px; }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 { font-size: 18px; margin-bottom: 6px; }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.035);
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(216,179,106,0.14);
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .example {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #e8e4dc;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+    }
+
+    ul { margin: 10px 0 0 0; padding-left: 20px; }
+    li + li { margin-top: 6px; }
+
+    .ok, .warn, .bad {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid;
+    }
+
+    .ok { color: #dff9ec; background: rgba(90,210,160,0.08); border-color: rgba(90,210,160,0.24); }
+    .warn { color: #fcedcb; background: rgba(216,179,106,0.08); border-color: rgba(216,179,106,0.24); }
+    .bad { color: #ffd8d3; background: rgba(255,143,134,0.08); border-color: rgba(255,143,134,0.24); }
+
+    footer {
+      margin-top: 24px;
+      padding: 22px 26px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,0.035);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid, .cards { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .hero { padding: 34px 22px 24px; }
+      .section { padding: 22px; }
+    }
+  </style>
+</head>
+<body class="grain">
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">skyfix · 中文小白使用说明书</div>
+      <div class="hero-grid">
+        <div>
+          <h1>把 OpenClaw 修明白，<br>而不是修得更乱。</h1>
+          <p class="lead">
+            这是一份给小白看的中文说明书。你不需要先懂 OpenClaw 架构，也不需要先记住一堆命令。
+            你只要知道：<strong>想装、想修、想升级、想把权限和 Telegram 收口</strong>，就找 <code>skyfix</code>。
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#quickstart">先看 30 秒上手</a>
+            <a class="btn" href="#examples">直接抄可用说法</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <strong>一句话理解</strong>
+          <p><code>skyfix</code> 是 OpenClaw 的维护总工程师：装机、升级、修 gateway、收口模型与权限、修 Telegram / 语音、给出验收结果。</p>
+          <div class="chips">
+            <span class="chip">安装 / 初始化</span>
+            <span class="chip">升级 / 重装 / 修复</span>
+            <span class="chip">权限 / 配置收口</span>
+            <span class="chip">Telegram / 语音诊断</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <aside class="sidebar">
+        <h3>目录</h3>
+        <nav class="nav">
+          <a href="#quickstart">30 秒上手</a>
+          <a href="#what">它到底能做什么</a>
+          <a href="#examples">直接照着说</a>
+          <a href="#workflow">它会怎么做事</a>
+          <a href="#report">你会拿到什么结果</a>
+          <a href="#limits">哪些事它不会乱做</a>
+          <a href="#files">重要文件怎么找</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="section" id="quickstart">
+          <span class="kicker">Quick Start</span>
+          <h2>30 秒上手</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <strong>直接说人话，不用背命令。</strong>
+                <div class="example">帮我把 OpenClaw 装好
+把 em2t 那台机器的 OpenClaw 收口
+修一下 Telegram 发不出去的问题</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <strong>它会先判断问题层级，再动手。</strong>
+                <p>不是一上来就重装。它会先区分：配置问题、权限问题、gateway 问题、网络问题、平台问题、依赖缺失。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <strong>修完必须给结果，不靠嘴硬。</strong>
+                <p>会说明现在版本、主模型、权限状态、gateway / LaunchAgent 状态、平台接入状态、剩余问题。</p>
+              </div>
+            </div>
+          </div>
+          <div class="ok">最简单的理解：你把需求说清楚，<code>skyfix</code> 负责把 OpenClaw 的维护链路接住。</div>
+        </section>
+
+        <section class="section" id="what">
+          <span class="kicker">Scope</span>
+          <h2>它到底能做什么</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>安装 / 初始化</h3>
+              <p>新机部署 OpenClaw、检查 Node / PATH、放好工作目录、补桌面快捷方式。</p>
+            </div>
+            <div class="card">
+              <h3>升级 / 重装 / 修复</h3>
+              <p>版本升级、坏状态修复、gateway / LaunchAgent 拉起、配置混乱时做收口。</p>
+            </div>
+            <div class="card">
+              <h3>权限 / 模型 / 配置收口</h3>
+              <p>切主模型、补 API key、统一 exec 权限与 elevatedDefault，确保配置能过校验。</p>
+            </div>
+            <div class="card">
+              <h3>Telegram / 语音 / 文件发送</h3>
+              <p>区分 token、网络、发送策略、语音依赖缺失，不把所有锅都甩给 Telegram。</p>
+            </div>
+          </div>
+          <div class="warn">微信在 V1 只做 <strong>lite 诊断</strong>，不承诺全自动修好。这个边界是故意留的，不是偷懒。</div>
+        </section>
+
+        <section class="section" id="examples">
+          <span class="kicker">Examples</span>
+          <h2>直接照着说就行</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>装机类</h3>
+              <div class="example">帮我在这台机器安装 OpenClaw
+给我把 OpenClaw 初始化好，顺手放桌面快捷方式</div>
+            </div>
+            <div class="card">
+              <h3>修复类</h3>
+              <div class="example">OpenClaw 起不来，帮我修
+gateway 挂了，帮我把 LaunchAgent 收口</div>
+            </div>
+            <div class="card">
+              <h3>配置类</h3>
+              <div class="example">把主模型切到 nowcoding/gpt-5.4
+把权限开到最高，并验证配置没坏</div>
+            </div>
+            <div class="card">
+              <h3>平台类</h3>
+              <div class="example">看看 Telegram 为什么发不出去
+帮我查查语音回复链路缺了什么</div>
+            </div>
+          </div>
+          <div class="ok">如果是远端机器，也直接说：<strong>去 em2t 上做</strong>、<strong>把这台机器收口</strong>。它会走远端维护链路。</div>
+        </section>
+
+        <section class="section" id="workflow">
+          <span class="kicker">How It Works</span>
+          <h2>它会怎么做事</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="num">A</div>
+              <div>
+                <strong>先检查，不先瞎修。</strong>
+                <p>先看当前版本、配置、主模型、权限、gateway / LaunchAgent、平台接入状态。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">B</div>
+              <div>
+                <strong>再判断该轻修、重装还是只收口。</strong>
+                <p>有些问题只需要补配置；有些问题要修服务；有些问题其实是网络或依赖没装，不该上来就删库重来。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">C</div>
+              <div>
+                <strong>最后做验收。</strong>
+                <p>修完要验证，没验证就不算完成。它会明确告诉你现在通了没，哪里还卡着。</p>
+              </div>
+            </div>
+          </div>
+          <div class="bad">它不会把“看上去像好了”当作“真的修好了”。这点很重要。</div>
+        </section>
+
+        <section class="section" id="report">
+          <span class="kicker">Output</span>
+          <h2>你最后会拿到什么结果</h2>
+          <ul>
+            <li>当前 OpenClaw 版本</li>
+            <li>当前主模型</li>
+            <li>当前权限状态</li>
+            <li>gateway / LaunchAgent 状态</li>
+            <li>如果涉及 Telegram / 语音：会说明卡在哪一层</li>
+            <li>关键日志路径 / 配置路径</li>
+            <li>剩余问题和下一步建议</li>
+          </ul>
+          <div class="example">一句人话版：
+不是只告诉你“我试过了”，而是告诉你“我修了什么、现在怎样、还差什么”。</div>
+        </section>
+
+        <section class="section" id="limits">
+          <span class="kicker">Boundaries</span>
+          <h2>哪些事它不会乱做</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>不会一上来粗暴重装</h3>
+              <p>先诊断、先备份、再决定是轻修还是重装。</p>
+            </div>
+            <div class="card">
+              <h3>不会把别的 skill 主控协议带进来</h3>
+              <p><code>skyfix</code> 是唯一维护编排器。它可以吸收别人的能力，但不会让外部协议反客为主。</p>
+            </div>
+            <div class="card">
+              <h3>不会把微信吹成全自动修复</h3>
+              <p>V1 只承诺 lite 诊断，这个边界是清楚写死的。</p>
+            </div>
+            <div class="card">
+              <h3>不会没验证就宣布胜利</h3>
+              <p>没有验证就没有完成，这条铁律不打折。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="files">
+          <span class="kicker">Files</span>
+          <h2>重要文件怎么找</h2>
+          <ul>
+            <li><code>SKILL.md</code>：技能主说明</li>
+            <li><code>references/cn.md</code>：中文架构入口</li>
+            <li><code>references/beginner-guide-cn.html</code>：你现在看到的这份小白说明书</li>
+            <li><code>scripts/</code>：真正做事的脚本</li>
+          </ul>
+          <div class="warn">如果你是普通使用者，先看这份 HTML，再决定要不要继续翻更底层文档。</div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <strong>skyfix / 使用建议</strong><br>
+      最好把它当成“OpenClaw 维护专家”，不是通用电脑维修工。你让它装、修、收口、验收，它会很专业；你让它处理完全无关的杂务，那就偏题了。
+    </footer>
+  </div>
+</body>
+</html>
