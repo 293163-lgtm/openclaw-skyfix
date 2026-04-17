@@ -1,0 +1,62 @@
+<svg width="1600" height="840" viewBox="0 0 1600 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="120" x2="1420" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1117"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#161B22"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 210) rotate(128.404) scale(520 520)">
+      <stop stop-color="#D8B36A" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#D8B36A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="greenGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(290 150) rotate(87.179) scale(380 420)">
+      <stop stop-color="#5AD2A0" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#5AD2A0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="strokeGold" x1="328" y1="226" x2="1324" y2="649" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8C27D"/>
+      <stop offset="1" stop-color="#8A6A34"/>
+    </linearGradient>
+    <filter id="blurA" x="0" y="0" width="1600" height="840" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="840" rx="32" fill="url(#bg)"/>
+  <g filter="url(#blurA)">
+    <ellipse cx="1180" cy="210" rx="270" ry="220" fill="url(#goldGlow)"/>
+    <ellipse cx="300" cy="180" rx="220" ry="180" fill="url(#greenGlow)"/>
+  </g>
+
+  <g opacity="0.22">
+    <path d="M0 621C170 577 313 506 428 408C531 320 610 229 665 134" stroke="#F3D7A1" stroke-width="1.4"/>
+    <path d="M225 839C327 706 413 594 485 504C562 406 660 325 779 262C942 177 1111 137 1284 142" stroke="#8FE2BE" stroke-width="1.2"/>
+    <path d="M922 836C1010 711 1088 609 1156 531C1231 445 1346 361 1500 280" stroke="#B89555" stroke-width="1.1"/>
+  </g>
+
+  <rect x="120" y="116" width="1360" height="608" rx="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+
+  <g opacity="0.95">
+    <rect x="182" y="178" width="176" height="38" rx="19" fill="rgba(216,179,106,0.12)" stroke="rgba(216,179,106,0.35)"/>
+    <text x="270" y="202" fill="#E8C27D" font-family="'SF Mono','JetBrains Mono',monospace" font-size="18" text-anchor="middle">OPENCLAW • SKYFIX</text>
+  </g>
+
+  <text x="182" y="328" fill="#F5F1E8" font-family="'Times New Roman','Noto Serif CJK SC','Songti SC',serif" font-size="118" font-weight="700">skyfix</text>
+  <text x="190" y="404" fill="#CBBEA3" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif" font-size="30" letter-spacing="1.2">OpenClaw Maintenance Expert for Real Machines</text>
+  <text x="190" y="468" fill="#D8B36A" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif" font-size="34" font-weight="700">OpenClaw 最靠谱的“修机佬”</text>
+
+  <text x="190" y="558" fill="#BEB7AA" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif" font-size="24">Install · Normalize · Repair · Verify</text>
+  <text x="190" y="598" fill="#8E8A80" font-family="'PingFang SC','Noto Sans CJK SC',sans-serif" font-size="22">Gateway · LaunchAgent · Telegram · Voice Pipeline</text>
+
+  <g>
+    <path d="M1169 258L1314 313V520C1314 580 1279 636 1225 664L1169 693L1113 664C1059 636 1024 580 1024 520V313L1169 258Z" fill="rgba(255,255,255,0.03)" stroke="url(#strokeGold)" stroke-width="2.4"/>
+    <path d="M1101 474L1148 521L1243 421" stroke="#F0CF94" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1169" cy="476" r="150" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    <circle cx="1169" cy="476" r="188" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+  </g>
+
+  <g opacity="0.85">
+    <rect x="183" y="650" width="214" height="44" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
+    <text x="290" y="678" fill="#D7D1C4" font-family="'SF Mono','JetBrains Mono',monospace" font-size="18" text-anchor="middle">field-tested v0.1.0</text>
+  </g>
+</svg>

@@ -1,6 +1,10 @@
 # skyfix
 ## OpenClaw Maintenance Expert for Real Machines
 
+**English** | [中文](./README.zh-CN.md)
+
+![skyfix banner](./assets/skyfix-banner.svg)
+
 **The OpenClaw repair mechanic you actually want on call.**
 
 `skyfix` is a self-contained OpenClaw maintenance expert for real-machine operations.
